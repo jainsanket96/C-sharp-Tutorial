@@ -1,4 +1,4 @@
 # C-sharp-Tutorial
 The repository account for the progress made each day on learning C sharp.
 The tutorial has been refrenced from the documentation provided by microsoft.
-It has yet not been completed
+It has not been completed yet. 
