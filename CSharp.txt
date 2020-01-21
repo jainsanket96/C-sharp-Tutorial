@@ -3,6 +3,89 @@ Started with the C sharp tutorial on MSDN(Microsoft)
 *Console.WriteLine()
 *basic string interpolation 
 
+*The key organizational concepts in C# are programs, namespaces, types, members, and assemblies.
+C# programs consist of one or more source files. 
+Programs declare types, which contain members and can be organized into namespaces.
+Classes and interfaces are examples of types. 
+Fields, methods, properties, and events are examples of members.
+When C# programs are compiled, they are physically packaged into assemblies. 
+Assemblies typically have the file extension .exe or .dll, depending on whether they implement applications or libraries, respectively.
+
+*A static class is basically the same as a non-static class, but there is one difference: a static class cannot be instantiated. 
+In other words, you cannot use the new operator to create a variable of the class type. 
+Because there is no instance variable, you access the members of a static class by using the class name itself. 
+
+*namespaces to organize its many classes
+System is a namespace and Console is a class in that namespace.
+The using keyword can be used so that the complete name is not required, as in the following example:
+
+using System;
+Console.WriteLine("Hello");
+Console.WriteLine("World!");
+
+*class is a reference type.
+At run time, when you declare a variable of a reference type, the variable contains the value null 
+until you explicitly create an instance of the class by using the new operator, 
+or assign it an object of a compatible type that may have been created elsewhere
+
+//[access modifier] - [class] - [identifier]
+public class Customer
+{
+   // Fields, properties, methods and events go here...
+}
+
+*class and an object are different things. 
+A class defines a type of object, but it is not an object itself.
+An object is a concrete entity based on a class, and is sometimes referred to as an instance of a class.
+Objects can be created by using the new keyword followed by the name of the class that the object will be based on.
+
+Customer object1 = new Customer();
+
+*Class inheritance
+Classes fully support inheritance, a fundamental characteristic of object-oriented programming. 
+When you create a class, you can inherit from any other interface or class that is not defined as sealed, and other classes can inherit from your class and override class virtual methods.
+Inheritance is accomplished by using a derivation, which means a class is declared by using a base class from which it inherits data and behavior. 
+A base class is specified by appending a colon and the name of the base class following the derived class name, like this:
+public class Manager : Employee
+{
+    // Employee fields, properties, methods and events are inherited
+    // New Manager fields, properties, methods and events go here...
+}
+
+When a class declares a base class, it inherits all the members of the base class except the constructors. 
+Unlike C++, a class in C# can only directly inherit from one base class. 
+However, because a base class may itself inherit from another class, a class may indirectly inherit multiple base classes. 
+Furthermore, a class can directly implement more than one interface.
+
+*Abstract classes have the following features:
+*An abstract class cannot be instantiated.
+*An abstract class may contain abstract methods and accessors.
+*It is not possible to modify an abstract class with the sealed modifier 
+because the two modifiers have opposite meanings. 
+The sealed modifier prevents a class from being inherited and the abstract modifier requires a class to be inherited.
+*A non-abstract class derived from an abstract class must include actual implementations of all inherited abstract methods and accessors
+
+Struct:-
+A struct is a value type. 
+When a struct is created, the variable to which the struct is assigned holds the struct's actual data. 
+When the struct is assigned to a new variable, it is copied. 
+The new variable and the original variable therefore contain two separate copies of the same data. 
+Changes made to one copy do not affect the other copy.
+Value type variables directly contain their values, which means that the memory is allocated inline in whatever context the variable is declared. 
+
+Tupules:
+C# tuples are types that you define using a lightweight syntax. 
+The advantages include a simpler syntax, rules for conversions based on number (referred to as cardinality) and types of elements, and consistent rules for copies, equality tests, and assignments. 
+As a tradeoff, tuples do not support some of the object-oriented idioms associated with inheritance
+
+Interfaces:
+*An interface contains definitions for a group of related functionalities that a non-abstract class or a struct must implement.
+By using interfaces, you can, for example, include behavior from multiple sources in a class. 
+That capability is important in C# because the language doesn't support multiple inheritance of classes. 
+In addition, you must use an interface if you want to simulate inheritance for structs, because they can't actually inherit from another struct or class.
+Interface members are automatically public, and they can't include any access modifiers. Members also can't be static.
+
+String interpolation:-
 Ex:
 string name = "Mark";
 var date = DateTime.Now;
@@ -24,6 +107,7 @@ Console.WriteLine($"Hello, {name}! Today is {date.DayOfWeek}, it's {date:HH:mm} 
 *The decimal type has a smaller range but greater precision than double.
 *the math using the decimal type has more digits to the right of the decimal point.
 *for each loop
+
 var fibNumbers = new List<int> { 0, 1, 1, 2, 3, 5, 8, 13 };
 int count = 0;
 foreach (int element in fibNumbers)
@@ -34,7 +118,8 @@ foreach (int element in fibNumbers)
 Console.WriteLine($"Number of elements: {count}");
 
 * When you precede a string with the $ character, you can embed C# code in the string declaration. The actual string replaces that C# code with the value it generates.
-*The collection you created uses the List<T> type. This type stores sequences of elements. You specify the type of the elements between the angle brackets.
+*The collection you created uses the List<T> type. This type stores sequences of elements. 
+You specify the type of the elements between the angle brackets.
 
 *One important aspect of this List<T> type is that it can grow or shrink, enabling you to add or remove elements. 
 *Console.WriteLine();
@@ -54,9 +139,6 @@ foreach (var name in names)
 
 
 Local variable declaration:
-C#
-
-Copy
 static void Declarations(string[] args)
 {
     int a;
@@ -64,20 +146,16 @@ static void Declarations(string[] args)
     a = 1;
     Console.WriteLine(a + b + c);
 }
-Local constant declaration:
-C#
 
-Copy
+Local constant declaration:
 static void ConstantDeclarations(string[] args)
 {
     const float pi = 3.1415927f;
     const int r = 25;
     Console.WriteLine(pi * r * r);
 }
-Expression statement:
-C#
 
-Copy
+Expression statement:
 static void Expressions(string[] args)
 {
     int i;
@@ -86,10 +164,8 @@ static void Expressions(string[] args)
     i++;                    // Expression statement
     Console.WriteLine(i);   // Expression statement
 }
-if statement:
-C#
 
-Copy
+if statement:
 static void IfStatement(string[] args)
 {
     if (args.Length == 0)
@@ -101,10 +177,8 @@ static void IfStatement(string[] args)
         Console.WriteLine("One or more arguments");
     }
 }
-switch statement:
-C#
 
-Copy
+switch statement:
 static void SwitchStatement(string[] args)
 {
     int n = args.Length;
@@ -121,10 +195,8 @@ static void SwitchStatement(string[] args)
             break;
     }
 }
-while statement:
-C#
 
-Copy
+while statement:
 static void WhileStatement(string[] args)
 {
     int i = 0;
@@ -134,10 +206,8 @@ static void WhileStatement(string[] args)
         i++;
     }
 }
-do statement:
-C#
 
-Copy
+do statement:
 static void DoStatement(string[] args)
 {
     string s;
@@ -149,9 +219,6 @@ static void DoStatement(string[] args)
 }
 
 for statement:
-C#
-
-Copy
 static void ForStatement(string[] args)
 {
     for (int i = 0; i < args.Length; i++) 
@@ -159,10 +226,8 @@ static void ForStatement(string[] args)
         Console.WriteLine(args[i]);
     }
 }
-foreach statement:
-C#
 
-Copy
+foreach statement:
 static void ForEachStatement(string[] args)
 {
     foreach (string s in args) 
@@ -170,10 +235,8 @@ static void ForEachStatement(string[] args)
         Console.WriteLine(s);
     }
 }
-break statement:
-C#
 
-Copy
+break statement:
 static void BreakStatement(string[] args)
 {
     while (true) 
@@ -184,10 +247,8 @@ static void BreakStatement(string[] args)
         Console.WriteLine(s);
     }
 }
-continue statement:
-C#
 
-Copy
+continue statement:
 static void ContinueStatement(string[] args)
 {
     for (int i = 0; i < args.Length; i++) 
@@ -197,10 +258,8 @@ static void ContinueStatement(string[] args)
         Console.WriteLine(args[i]);
     }
 }
-goto statement:
-C#
 
-Copy
+goto statement:
 static void GoToStatement(string[] args)
 {
     int i = 0;
@@ -211,10 +270,8 @@ static void GoToStatement(string[] args)
     if (i < args.Length) 
         goto loop;
 }
-return statement:
-C#
 
-Copy
+return statement:
 static int Add(int a, int b) 
 {
     return a + b;
@@ -324,6 +381,8 @@ static void UsingStatement(string[] args)
         w.WriteLine("Line three");
     }
 }
+
+
 
 
 
